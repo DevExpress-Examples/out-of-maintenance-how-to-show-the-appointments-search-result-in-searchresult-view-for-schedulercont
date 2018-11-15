@@ -1,3 +1,12 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Converters.cs](./CS/SearchResultViewDemo/Converters.cs) (VB: [Converters.vb](./VB/SearchResultViewDemo/Converters.vb))
+* [CustomObjectsProvider.cs](./CS/SearchResultViewDemo/CustomObjectsProvider.cs) (VB: [CustomObjectsProvider.vb](./VB/SearchResultViewDemo/CustomObjectsProvider.vb))
+* **[MainWindow.xaml](./CS/SearchResultViewDemo/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/SearchResultViewDemo/MainWindow.xaml))**
+* [SearchResultView.xaml](./CS/SearchResultViewDemo/SearchResultView.xaml) (VB: [SearchResultView.xaml](./VB/SearchResultViewDemo/SearchResultView.xaml))
+* [SearchResultView.xaml.cs](./CS/SearchResultViewDemo/SearchResultView.xaml.cs) (VB: [SearchResultView.xaml](./VB/SearchResultViewDemo/SearchResultView.xaml))
+<!-- default file list end -->
 # How to show the appointments search result in SearchResult View for SchedulerControl (similarly to ListView in Outlook)
 
 
