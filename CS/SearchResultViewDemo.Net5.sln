@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchResultViewDemo", "SearchResultViewDemo\SearchResultViewDemo.csproj", "{CC182BFF-A7BA-43EA-8A48-FA86DBF81770}"
+# Visual Studio 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchResultViewDemo", "SearchResultViewDemo\SearchResultViewDemo.Net5.csproj", "{CC182BFF-A7BA-43EA-8A48-FA86DBF81770}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
