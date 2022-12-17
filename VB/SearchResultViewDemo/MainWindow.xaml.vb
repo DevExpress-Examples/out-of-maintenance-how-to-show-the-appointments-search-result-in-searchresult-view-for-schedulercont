@@ -1,14 +1,12 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
 Imports DevExpress.Xpf.Ribbon
 
 Namespace SearchResultViewDemo
-    Partial Public Class MainWindow
+
+    Public Partial Class MainWindow
         Inherits DXRibbonWindow
 
         Public Sub New()
-            InitializeComponent()
+            Me.InitializeComponent()
         End Sub
     End Class
 End Namespace

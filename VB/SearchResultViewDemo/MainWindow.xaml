@@ -11,13 +11,17 @@
     xmlns:dxo="http://schemas.devexpress.com/winfx/2008/xaml/office"
     xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
     xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal" 
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="DXApplication" Height="700" Width="1100"
-    SnapsToDevicePixels="True" UseLayoutRounding="True"
+    SnapsToDevicePixels="True"
     >
     <Window.DataContext>
         <local:CustomObjects/>
     </Window.DataContext>
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="PreviewKeyDown" Command="{Binding PreviewKeyDownCommand}" PassEventArgsToCommand="True"/>
+    </dxmvvm:Interaction.Behaviors>
     <dxr:DXRibbonWindow.Resources>
         <ResourceDictionary>
             <dxsch:SchedulerUICommand x:Key="commands"/>
@@ -32,7 +36,6 @@
             <local:FilterCriteriaConverter x:Key="filterCriteriaConverter"/>
         </ResourceDictionary>
     </dxr:DXRibbonWindow.Resources>
-
     <dxb:BarManager Name="barManager1" ToolbarGlyphSize="Small">
         <dxb:BarManager.Items>
             <dxb:BarButtonItem Command="{Binding Path=OpenSchedule, Mode=OneTime, Source={StaticResource commands} }" Name="biOpenSchedule"/>
@@ -148,7 +151,11 @@
                            VerticalAlignment="Center"
                            FilterCondition="Contains"
                            FilterByColumnsMode="Custom"
+                           NullText="Search appointments (Ctrl+E)"
                            >
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding SearchControlLoadedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Behaviors>
                     <dxe:SearchControl.ColumnProvider>
                         <dxe:SelectorEditColumnProvider>
                             <dxe:SelectorEditColumnProvider.CustomColumns>
@@ -158,6 +165,9 @@
                     </dxe:SearchControl.ColumnProvider>
                 </dxe:SearchControl>
                 <dxwui:FlipView Name="flipView1" Grid.Row="1" SelectedIndex="{Binding Path=FilterCriteria, ElementName=SearchControl, Converter={StaticResource filterCriteriaConverter}}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand EventName="SelectionChanged" Command="{Binding ResetSearchTextCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Behaviors>
                     <local:SearchResultView FilterCriteria="{Binding Path=FilterCriteria, ElementName=SearchControl}" OwnerScheduler="{Binding ElementName=schedulerControl1}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>

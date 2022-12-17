@@ -6,16 +6,11 @@
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              x:Class="SearchResultViewDemo.SearchResultView" 
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-             xmlns:local="clr-namespace:SearchResultViewDemo"
              mc:Ignorable="d" 
              d:DesignHeight="300" Width="Auto">
-    <UserControl.Resources>
-        <local:LabelIdConverter x:Key="LabelIdConverter"/>
-        <local:StatusIdConverter x:Key="StatusIdConverter"/>
-    </UserControl.Resources>
     <Grid>
         <dxg:GridControl x:Name="searchResultGrid" EnableSmartColumnsGeneration="True" AutoExpandAllGroups="True"
-                         ItemsSource="{Binding Path=OwnerScheduler.Storage.AppointmentStorage.Items, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" 
+                         ItemsSource="{Binding Path=OwnerScheduler.Storage.AppointmentStorage.Items, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" 
                          FilterCriteria="{Binding Path=FilterCriteria, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
                          CustomColumnDisplayText="searchResultGrid_CustomGroupDisplayText">
             <dxg:GridControl.Columns>
@@ -31,44 +26,11 @@
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
                 <dxg:GridColumn FieldName="AllDay"/>
-                <dxg:GridColumn FieldName="LabelId" Header="Label">
-                    <dxg:GridColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="16" Height="16" BorderThickness="1" BorderBrush="Black">
-                                    <Border.Background>
-                                        <MultiBinding Converter="{StaticResource LabelIdConverter}">
-                                            <Binding Path="RowData.Row.LabelId"/>
-                                            <Binding Path="OwnerScheduler" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}"/>
-                                        </MultiBinding>
-                                    </Border.Background>
-                                </Border>
-                                <dxe:TextEdit Name="PART_Editor"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </dxg:GridColumn.CellTemplate>
-                </dxg:GridColumn>
-                <dxg:GridColumn FieldName="StatusId" Header="Status">
-                    <dxg:GridColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="16" Height="16" BorderThickness="1" BorderBrush="Black">
-                                    <Border.Background>
-                                        <MultiBinding Converter="{StaticResource StatusIdConverter}">
-                                            <Binding Path="RowData.Row.StatusId"/>
-                                            <Binding Path="OwnerScheduler" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}"/>
-                                        </MultiBinding>
-                                    </Border.Background>
-                                </Border>
-                                <dxe:TextEdit Name="PART_Editor"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </dxg:GridColumn.CellTemplate>
-                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="LabelId" Header="Label"/>
+                <dxg:GridColumn FieldName="StatusId" Header="Status"/>
                 <dxg:GridColumn FieldName="Duration"/>
                 <dxg:GridColumn FieldName="Location"/>
-                <dxg:GridColumn FieldName="ResourceId" Header="Resource" AllowSorting="True" GroupIndex="0">
-                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="ResourceId" Header="Resource" GroupIndex="0" AllowSorting="True"/>
                 <dxg:GridColumn FieldName="Description"/>
                 <dxg:GridColumn FieldName="Type"/>
             </dxg:GridControl.Columns>
